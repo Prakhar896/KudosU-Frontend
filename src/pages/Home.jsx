@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import SampleComponent from '../components/SampleComponent'
 import server from "../networking"
-import { Button } from "@/components/ui/button"
-import { Box, Center, Container, Flex, HStack, Heading, Image, List, ListItem, Spinner, Text, VStack } from '@chakra-ui/react'
+import { Box, Center, Container, Flex, HStack, Heading, Image, List, ListItem, Spacer, Spinner, Text, VStack, Button } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
+import { Link } from 'react-router-dom'
 
 function Home() {
     const [loading, setLoading] = useState("")
@@ -40,23 +41,27 @@ function Home() {
 
     return (
         <Box>
-            <Heading as={"h2"} textAlign={"left"} mb={"30px"}>Kudos!</Heading>
+            <HStack mb={"30px"}>
+                <Heading as={"h2"} textAlign={"left"}>Kudos!</Heading>
+                <Spacer />
+                <Link to={"/sendCompliment"}><Button><AddIcon color={"blue"} /></Button></Link>
+            </HStack>
             <VStack spacing={"20px"}>
-            {
-                Object.values(complimentsData).map((compliment, index) => {
-                    return (
-                        <Box key={index} bg={"gray.100"} p={"10px"} rounded={"10px"} alignItems={"center"} border={compliment["recipientAcknowledged"] ? "": "3px solid teal"}>
-                            <HStack alignItems={"flex-start"} spacing={"15px"}>
-                                <Image maxHeight={"100%"} maxWidth={"35%"} display={"block"} objectFit={"cover"} src={compliment["imgURL"]} rounded={"10px"} />
-                                <VStack alignItems={"flex-start"} textAlign={"left"}>
-                                    <Text>{compliment["text"]}</Text>
-                                    <Text size={"xs"} color={"gray.500"}>From {compliment["from"]}</Text>
-                                </VStack>
-                            </HStack>
-                        </Box>
-                    )
-                })
-            }
+                {
+                    Object.values(complimentsData).map((compliment, index) => {
+                        return (
+                            <Box key={index} bg={"gray.100"} p={"10px"} rounded={"10px"} alignItems={"center"} border={compliment["recipientAcknowledged"] ? "" : "3px solid teal"}>
+                                <HStack alignItems={"flex-start"} spacing={"15px"}>
+                                    <Image maxHeight={"100%"} maxWidth={"35%"} display={"block"} objectFit={"cover"} src={compliment["imgURL"]} rounded={"10px"} />
+                                    <VStack alignItems={"flex-start"} textAlign={"left"}>
+                                        <Text>{compliment["text"]}</Text>
+                                        <Text size={"xs"} color={"gray.500"}>From {compliment["from"]}</Text>
+                                    </VStack>
+                                </HStack>
+                            </Box>
+                        )
+                    })
+                }
             </VStack>
         </Box>
     )
