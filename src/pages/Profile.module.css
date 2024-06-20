@@ -1,0 +1,54 @@
+.Profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fa; /* Light background color */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    border-radius: 10px; /* Rounded corners */
+    max-width: 400px; /* Limit the width */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.ProfilePic {
+    width: 150px; /* Smaller profile pic */
+    height: 150px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    overflow: hidden; /* Ensure image fits within the circle */
+}
+
+.ProfilePic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.info b{
+    font-weight: 700; /* Bold labels */
+     /* Primary color for labels */
+}
+
+.Email {
+    margin-bottom: 0;
+}
+
+
+.ProfilePic img {
+    transition: transform 0.3s ease;
+}
+
+.ProfilePic img:hover {
+    transform: scale(1.05); /* Slightly enlarge the picture on hover */
+}
