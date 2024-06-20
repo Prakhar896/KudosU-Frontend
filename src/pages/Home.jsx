@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SampleComponent from '../components/SampleComponent'
 import server from "../networking"
 import { Button } from "@/components/ui/button"
+import { Container, Heading, List } from '@chakra-ui/react'
 
 function Home() {
     const [loading, setLoading] = useState("")
@@ -33,9 +34,12 @@ function Home() {
     }
 
     return (
-        <div id='content'>
-            <h1>Home</h1>
-        </div>
+        <Container>
+            <Heading as={"h2"} textAlign={"left"}>Kudos</Heading>
+            <List>
+                
+            </List>
+        </Container>
     )
 }
 
