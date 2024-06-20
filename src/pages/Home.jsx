@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SampleComponent from '../components/SampleComponent'
 import server from "../networking"
+import { Button } from "@/components/ui/button"
 
 function Home() {
     const [health, setHealth] = useState("Checking...")
@@ -18,6 +19,7 @@ function Home() {
         <>
             <SampleComponent />
             <p>{health}</p>
+            <Button>Click me</Button>
         </>
     )
 }
