@@ -9,8 +9,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import Profile from "@/components/profile";
 
 export default function Home() {
   return (
@@ -26,7 +28,9 @@ export default function Home() {
             <Button>Check In</Button>
           </DrawerHeader>
           <DrawerFooter>
-            <Button>Profile</Button>
+            {/* <Button>Profile</Button> */}
+            <Profile />
+
             <DrawerClose>
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
