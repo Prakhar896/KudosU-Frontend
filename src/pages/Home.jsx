@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SampleComponent from '../components/SampleComponent'
 import server from "../networking"
 import { Button } from "@/components/ui/button"
-import { Container, Heading, List } from '@chakra-ui/react'
+import { Box, Center, Container, Flex, HStack, Heading, Image, List, ListItem, Spinner, Text, VStack } from '@chakra-ui/react'
 
 function Home() {
     const [loading, setLoading] = useState("")
@@ -13,33 +13,52 @@ function Home() {
             "email": import.meta.env.VITE_STATIC_EMAIL,
             "password": import.meta.env.VITE_STATIC_PASSWORD
         })
-        .then(res => {
-            console.log(res.data)
-            setComplimentsData(res.data)
-            setLoading("done")
-        })
-        .catch(err => {
-            console.log("ERROR: Failed to fetch compliments; error: " + err)
-            setLoading("Something went wrong. Please reload.")
-        })
+            .then(res => {
+                console.log(res.data)
+                setComplimentsData(res.data)
+                setLoading("done")
+            })
+            .catch(err => {
+                console.log("ERROR: Failed to fetch compliments; error: " + err)
+                setLoading("Something went wrong. Please reload.")
+            })
     }, [])
+
+    useEffect(() => console.log(complimentsData), [complimentsData])
 
     if (loading != "done") {
         return (
-            <div id='content'>
-                <h3><strong>Loading your ✨ fresh compliments ✨...</strong></h3>
-                <p>{loading}</p>
-            </div>
+            <Center>
+                <VStack>
+                    <Spinner />
+                    <Heading as={"h3"}>Loading your ✨ fresh compliments ✨...</Heading>
+                    <Text>{loading}</Text>
+                </VStack>
+            </Center>
         )
     }
 
     return (
-        <Container>
-            <Heading as={"h2"} textAlign={"left"}>Kudos</Heading>
-            <List>
-                
-            </List>
-        </Container>
+        <Box>
+            <Heading as={"h2"} textAlign={"left"} mb={"30px"}>Kudos!</Heading>
+            <VStack spacing={"20px"}>
+            {
+                Object.values(complimentsData).map((compliment, index) => {
+                    return (
+                        <Box key={index} bg={"gray.100"} p={"10px"} rounded={"10px"} alignItems={"center"} border={compliment["recipientAcknowledged"] ? "": "3px solid teal"}>
+                            <HStack alignItems={"flex-start"} spacing={"15px"}>
+                                <Image maxHeight={"100%"} maxWidth={"35%"} display={"block"} objectFit={"cover"} src={compliment["imgURL"]} rounded={"10px"} />
+                                <VStack alignItems={"flex-start"} textAlign={"left"}>
+                                    <Text>{compliment["text"]}</Text>
+                                    <Text size={"xs"} color={"gray.500"}>From {compliment["from"]}</Text>
+                                </VStack>
+                            </HStack>
+                        </Box>
+                    )
+                })
+            }
+            </VStack>
+        </Box>
     )
 }
 
