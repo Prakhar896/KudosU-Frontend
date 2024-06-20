@@ -21,14 +21,14 @@ function Home() {
     <>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <MenuDrawer />
-        <DetailsPopUp
+        {/* <DetailsPopUp
           imgName={
             "https://www.desicomments.com/wp-content/uploads/2017/02/Happy-Smiley-Image.jpg"
           }
           text={"Thank you so much for helping me to my work"}
           isAnonymus={true}
           from={"Keira"}
-        />
+        /> */}
       </main>
     </>
   );
