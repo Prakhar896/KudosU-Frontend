@@ -4,23 +4,38 @@ import server from "../networking"
 import { Button } from "@/components/ui/button"
 
 function Home() {
-    const [health, setHealth] = useState("Checking...")
+    const [loading, setLoading] = useState("")
+    const [complimentsData, setComplimentsData] = useState({})
 
     useEffect(() => {
-        server.get("/api/health")
-            .then(res => {
-                console.log("Health: ", res.data)
-                setHealth(res.data)
-            })
-            .catch(err => console.log(err))
+        server.post("/api/getCompliments", {
+            "email": import.meta.env.VITE_STATIC_EMAIL,
+            "password": import.meta.env.VITE_STATIC_PASSWORD
+        })
+        .then(res => {
+            console.log(res.data)
+            setComplimentsData(res.data)
+            setLoading("done")
+        })
+        .catch(err => {
+            console.log("ERROR: Failed to fetch compliments; error: " + err)
+            setLoading("Something went wrong. Please reload.")
+        })
     }, [])
 
+    if (loading != "done") {
+        return (
+            <div id='content'>
+                <h3><strong>Loading your ✨ fresh compliments ✨...</strong></h3>
+                <p>{loading}</p>
+            </div>
+        )
+    }
+
     return (
-        <>
-            <SampleComponent />
-            <p>{health}</p>
-            <Button>Click me</Button>
-        </>
+        <div id='content'>
+            <h1>Home</h1>
+        </div>
     )
 }
 
