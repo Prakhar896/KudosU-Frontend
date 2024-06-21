@@ -7,6 +7,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Layout from "./Layout.jsx";
 import Home from "./pages/Home.jsx";
 import SendCompliment from "./pages/SendCompliment.jsx";
+import Wrap from "./pages/Wrap.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="sendCompliment" element={<SendCompliment />} />
+          <Route path="wrap" element={<Wrap />} />
         </Route>
       </Routes>
     </ChakraProvider>

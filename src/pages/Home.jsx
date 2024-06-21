@@ -64,7 +64,7 @@ function Home() {
                 }
             </VStack>
         </Box>
-    )
+     )
 }
 
-export default Home
+export default Home;
