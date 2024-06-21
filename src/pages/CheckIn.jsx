@@ -1,11 +1,7 @@
 import React from 'react';
 import styles from './CheckIn.module.css';
-
-
 import RadioGroupRating from './SatisfactionBar.jsx';
 
-
-console.log('hi');
 const CheckIn = () => {
     return (
         <div className={styles.CheckIn}>
