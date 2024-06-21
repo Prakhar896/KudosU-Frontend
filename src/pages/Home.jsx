@@ -1,37 +1,70 @@
-import React, { useEffect, useState } from "react";
-import SampleComponent from "../components/SampleComponent";
-import server from "../networking";
-import { Button } from "@/components/ui/button";
-import MenuDrawer from "@/components/menuDrawer";
-import DetailsPopUp from "@/components/detailsPopUp";
+import React, { useEffect, useState } from 'react'
+import SampleComponent from '../components/SampleComponent'
+import server from "../networking"
+import { Box, Center, Container, Flex, HStack, Heading, Image, List, ListItem, Spacer, Spinner, Text, VStack, Button } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
+import { Link } from 'react-router-dom'
+
 function Home() {
-  const [health, setHealth] = useState("Checking...");
+    const [loading, setLoading] = useState("")
+    const [complimentsData, setComplimentsData] = useState({})
 
-  useEffect(() => {
-    server
-      .get("/api/health")
-      .then((res) => {
-        console.log("Health: ", res.data);
-        setHealth(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    useEffect(() => {
+        server.post("/api/getCompliments", {
+            "email": import.meta.env.VITE_STATIC_EMAIL,
+            "password": import.meta.env.VITE_STATIC_PASSWORD
+        })
+            .then(res => {
+                console.log(res.data)
+                setComplimentsData(res.data)
+                setLoading("done")
+            })
+            .catch(err => {
+                console.log("ERROR: Failed to fetch compliments; error: " + err)
+                setLoading("Something went wrong. Please reload.")
+            })
+    }, [])
 
-  return (
-    <>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <MenuDrawer />
-        {/* <DetailsPopUp
-          imgName={
-            "https://www.desicomments.com/wp-content/uploads/2017/02/Happy-Smiley-Image.jpg"
-          }
-          text={"Thank you so much for helping me to my work"}
-          isAnonymus={true}
-          from={"Keira"}
-        /> */}
-      </main>
-    </>
-  );
+    useEffect(() => console.log(complimentsData), [complimentsData])
+
+    if (loading != "done") {
+        return (
+            <Center>
+                <VStack>
+                    <Spinner />
+                    <Heading as={"h3"}>Loading your ✨ fresh compliments ✨...</Heading>
+                    <Text>{loading}</Text>
+                </VStack>
+            </Center>
+        )
+    }
+
+    return (
+        <Box>
+            <HStack mb={"30px"}>
+                <Heading as={"h2"} textAlign={"left"}>Kudos!</Heading>
+                <Spacer />
+                <Link to={"/sendCompliment"}><Button><AddIcon color={"blue"} /></Button></Link>
+            </HStack>
+            <VStack spacing={"20px"}>
+                {
+                    Object.values(complimentsData).map((compliment, index) => {
+                        return (
+                            <Box key={index} bg={"gray.100"} p={"10px"} rounded={"10px"} alignItems={"center"} border={compliment["recipientAcknowledged"] ? "" : "3px solid teal"}>
+                                <HStack alignItems={"flex-start"} spacing={"15px"}>
+                                    <Image maxHeight={"100%"} maxWidth={"35%"} display={"block"} objectFit={"cover"} src={compliment["imgURL"]} rounded={"10px"} />
+                                    <VStack alignItems={"flex-start"} textAlign={"left"}>
+                                        <Text>{compliment["text"]}</Text>
+                                        <Text size={"xs"} color={"gray.500"}>From {compliment["from"]}</Text>
+                                    </VStack>
+                                </HStack>
+                            </Box>
+                        )
+                    })
+                }
+            </VStack>
+        </Box>
+     )
 }
 
 export default Home;
