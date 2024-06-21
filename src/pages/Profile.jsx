@@ -7,8 +7,7 @@ const Profile = () => {
     return (
         <>
             <MenuDrawer />
-            <div className={"ProfilePic"}>
-
+            <div className={"Profile"}>
                 <div className={"ProfilePic"}>
                     <img src={profilePic} alt="Profile" className={"ProfilePic"} />
                 </div>

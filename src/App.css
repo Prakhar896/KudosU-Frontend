@@ -97,7 +97,3 @@
 .ProfilePic img {
   transition: transform 0.3s ease;
 }
-
-.ProfilePic img:hover {
-  transform: scale(1.05); /* Slightly enlarge the picture on hover */
-}
