@@ -2,9 +2,37 @@ import React from 'react';
 // import styles from './CheckIn.module.css';
 // import RadioGroupRating from './SatisfactionBar.jsx';
 import MenuDrawer from '@/components/menuDrawer';
-import { Button, HStack, Text } from '@chakra-ui/react';
+import { Button, HStack, Text, useToast } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const CheckIn = () => {
+    const toast = useToast();
+    const navigate = useNavigate()
+
+    const showToast = (title, description, duration = 5000, isClosable = true, status = 'info', icon = null) => {
+        if (!["success", "warning", "error", "info"].includes(status)) {
+            status = "info"
+        }
+
+        const toastConfig = {
+            title: title,
+            description: description,
+            duration: duration,
+            isClosable: isClosable,
+            status: status
+        }
+        if (icon != null) {
+            toastConfig.icon = icon
+        }
+
+        toast(toastConfig)
+    }
+
+    const checkedIn = () => {
+        navigate("/")
+        showToast("Success", "Thanks for checking in! Come back next week!", 5000, true, "success")
+    }
+
     return (
         <>
             <MenuDrawer />
@@ -21,7 +49,7 @@ const CheckIn = () => {
 
                 <input type="text" className={"textbox"} placeholder="Tell me about your week" />
 
-                <button className={"buttonSubmit"}>
+                <button className={"buttonSubmit"} onClick={checkedIn}>
                     Submit
                 </button>
 

@@ -1,3 +1,10 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
 .CheckIn {
   display: flex;
   flex-direction: column;
@@ -53,22 +60,22 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f8f9fa; /* Light background color */
+  background-color: #f8f9fa;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  border-radius: 10px; /* Rounded corners */
-  max-width: 400px; /* Limit the width */
-  margin: 0 auto; /* Center horizontally */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .ProfilePic {
-  width: 150px; /* Smaller profile pic */
+  width: 150px;
   height: 150px;
   border-radius: 50%;
   background-color: #f0f0f0;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-  overflow: hidden; /* Ensure image fits within the circle */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .ProfilePic img {
@@ -85,15 +92,9 @@
 }
 
 .info b{
-  font-weight: 700; /* Bold labels */
-   /* Primary color for labels */
+  font-weight: 700;
 }
 
 .Email {
   margin-bottom: 0;
-}
-
-
-.ProfilePic img {
-  transition: transform 0.3s ease;
 }

@@ -10,6 +10,7 @@ import SendCompliment from "./pages/SendCompliment.jsx";
 import Wrap from "./pages/Wrap.jsx";
 import Profile from "./pages/Profile.jsx";
 import CheckIn from "./pages/CheckIn.jsx";
+import Login from "./pages/Login.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                     <Route path="wrap" element={<Wrap />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="checkIn" element={<CheckIn />} />
+                    <Route path="loggedOut" element={<Login />} />
                 </Route>
             </Routes>
         </ChakraProvider>
