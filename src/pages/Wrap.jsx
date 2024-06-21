@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function Wrap() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-2 ">
+    <main className="flex flex-col items-center p-2 ">
       <div className="flex justify-center items-center content-center">
         <Link to="/">
           {" "}
