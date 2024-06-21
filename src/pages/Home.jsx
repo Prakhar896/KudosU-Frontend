@@ -5,6 +5,7 @@ import { Box, Center, Container, Flex, HStack, Heading, Image, List, ListItem, S
 import { AddIcon } from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import MenuDrawer from '@/components/menuDrawer'
+import DetailsPopUp from '@/components/detailsPopUp'
 
 function Home() {
     const [loading, setLoading] = useState("")
@@ -60,6 +61,8 @@ function Home() {
                                             <Text>{compliment["text"]}</Text>
                                             <Text size={"xs"} color={"gray.500"}>From {compliment["from"]}</Text>
                                         </VStack>
+                                        <Spacer />
+                                        <DetailsPopUp imgName={compliment["imgURL"]} text={compliment["text"]} isAnonymus={compliment["isAnonymous"]} from={compliment["from"]} />
                                     </HStack>
                                 </Box>
                             )
